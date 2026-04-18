@@ -48,6 +48,5 @@ public class CarrosService {
     saida.setModelo(entrada.getModelo());
     saida.setMarca(entrada.getMarca());
     return saida;
-
     }
 }
