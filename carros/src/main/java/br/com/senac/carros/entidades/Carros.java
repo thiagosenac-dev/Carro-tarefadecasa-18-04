@@ -1,11 +1,9 @@
 package br.com.senac.carros.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-public class Carros {
+@Entity
+public class Carros{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

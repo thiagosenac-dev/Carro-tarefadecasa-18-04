@@ -1,5 +1,6 @@
 package br.com.senac.carros.controller;
 
+import br.com.senac.carros.dtos.CarrosFiltroDto;
 import br.com.senac.carros.dtos.CarrosRequestDto;
 import br.com.senac.carros.entidades.Carros;
 import br.com.senac.carros.services.CarrosService;
@@ -18,9 +19,9 @@ public class CarrosController {
         this.carrosService = carrosService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Carros>> lisar(){
-        return ResponseEntity.ok(carrosService.listar());
+    @GetMapping("/listar")
+    public ResponseEntity<List<Carros>> listar(CarrosFiltroDto filtro){
+        return ResponseEntity.ok(carrosService.listar(filtro));
     }
     @PostMapping("/criar")
     public ResponseEntity<Carros> criar(
@@ -70,4 +71,22 @@ public class CarrosController {
 
 
     }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<Carros> ListarById(
+            @PathVariable Long id
+    ){
+        try{
+            return ResponseEntity.ok(carrosService.ListarById(id));
+        }catch (RuntimeException e){
+            return ResponseEntity
+                    .badRequest()
+                    .body(null);
+        }catch (Exception e){
+            return ResponseEntity
+                    .internalServerError()
+                    .body(null);
+        }
+    }
+
 }
